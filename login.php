@@ -84,6 +84,8 @@
                         echo '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Login success! Redirecting you to home page...</div>';
                         $_SESSION['user'] = $email;
                         $_SESSION['usertype'] = 'a';
+                        $_SESSION['loggedIn'] = true;
+                        $_SESSION['fullName'] = 'Administrator';
                         header('location: admin/index.php');
                     } else {
                         $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
