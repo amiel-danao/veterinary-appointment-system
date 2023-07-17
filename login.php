@@ -39,61 +39,82 @@
 
 
     if($_POST){
-
         $email=$_POST['useremail'];
         $password=$_POST['userpassword'];
         
         $error='<label for="promter" class="form-label"></label>';
 
-        $result= $database->query("select * from webuser where email='$email'");
+        $result = $database->query("select * from webuser where email='$email'");
         if($result->num_rows==1){
             $utype=$result->fetch_assoc()['usertype'];
             if ($utype=='p'){
                 //TODO
-                $checker = $database->query("select * from patient where pemail='$email' and ppassword='$password'");
-                if ($checker->num_rows==1){
-
-
+                $query = "SELECT pemail FROM patient WHERE pemail = '$email'";
+                $checkUserStatement = $database->query($query);
+                $numOfUsers = $checkUserStatement->num_rows;
+                if ($numOfUsers == 1){
                     //   Patient dashbord
-                    $_SESSION['user']=$email;
-                    $_SESSION['usertype']='p';
+                    $query = "SELECT ppassword FROM patient WHERE pemail = '$email'";
+                    $stmt = $database->query($query);                    
+                    $ppassword = $stmt->fetch_assoc();
+                    if (password_verify($password, $ppassword['ppassword'])) { // password_verify($password, $ppassword['ppassword']) // $ppassword['ppassword'] == $password //
+                        echo '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Login success! Redirecting you to home page...</div>';
+                        $_SESSION['user'] = $email;
+                        $_SESSION['usertype'] = 'p';
+                        header('location: patient/index.php');
+                    } else {
+                        $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+                    }
                     
-                    header('location: patient/index.php');
-
                 }else{
-                    $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+                    $error= '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
                 }
 
-            }elseif($utype=='a'){
+            } else if($utype=='a'){
                 //TODO
-                $checker = $database->query("select * from admin where aemail='$email' and apassword='$password'");
-                if ($checker->num_rows==1){
-
-
+                $query = "SELECT aemail FROM admin WHERE aemail = '$email'";
+                $checkUserStatement = $database->query($query);
+                $numOfUsers = $checkUserStatement->num_rows;
+                if ($numOfUsers == 1) {
                     //   Admin dashbord
-                    $_SESSION['user']=$email;
-                    $_SESSION['usertype']='a';
-                    
-                    header('location: admin/index.php');
+                    $query = "SELECT apassword FROM admin WHERE aemail = '$email'";
+                    $stmt = $database->query($query);
+                    $apassword = $stmt->fetch_assoc();
+                    if ($apassword['apassword'] == $password) { /*password_verify($password, $apassword)*/
+                        echo '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Login success! Redirecting you to home page...</div>';
+                        $_SESSION['user'] = $email;
+                        $_SESSION['usertype'] = 'a';
+                        header('location: admin/index.php');
+                    } else {
+                        $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+                    }
 
                 }else{
-                    $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+                    $error= '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
                 }
 
 
             }elseif($utype=='d'){
                 //TODO
-                $checker = $database->query("select * from doctor where docemail='$email' and docpassword='$password'");
-                if ($checker->num_rows==1){
-
-
-                    //   doctor dashbord
-                    $_SESSION['user']=$email;
-                    $_SESSION['usertype']='d';
-                    header('location: doctor/index.php');
+                $query = "SELECT docemail FROM doctor WHERE docemail = '$email'";
+                $checkUserStatement = $database->query($query);
+                $numOfUsers = $checkUserStatement->num_rows;
+                if ($numOfUsers == 1) {
+                    //   Doctor dashbord
+                    $query = "SELECT docpassword FROM doctor WHERE docemail = '$email'";
+                    $stmt = $database->query($query);
+                    $docpassword = $stmt->fetch_assoc();
+                    if ($docpassword['docpassword'] == $password) { /*password_verify($password, $docpassword)*/
+                        echo '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Login success! Redirecting you to home page...</div>';
+                        $_SESSION['user'] = $email;
+                        $_SESSION['usertype'] = 'd';
+                        header('location: doctor/index.php');
+                    } else {
+                        $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+                    }
 
                 }else{
-                    $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+                    $error= '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
                 }
 
             }
@@ -154,8 +175,6 @@
                     <input type="Password" name="userpassword" class="input-text" placeholder="Password" required>
                 </td>
             </tr>
-
-
             <tr>
                 <td><br>
                 <?php echo $error ?>

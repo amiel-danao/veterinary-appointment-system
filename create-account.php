@@ -48,11 +48,11 @@ if($_POST){
     $lname=$_SESSION['personal']['lname'];
     $name=$fname." ".$lname;
     $address=$_SESSION['personal']['address'];
-    $nic=$_SESSION['personal']['nic'];
     $dob=$_SESSION['personal']['dob'];
     $email=$_POST['newemail'];
     $tele=$_POST['tele'];
     $newpassword=$_POST['newpassword'];
+    
     $cpassword=$_POST['cpassword'];
     
     if ($newpassword==$cpassword){
@@ -65,10 +65,11 @@ if($_POST){
             $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Already have an account for this Email address.</label>';
         }else{
             //TODO
-            $database->query("insert into patient(pemail,pname,ppassword, paddress, pnic,pdob,ptel) values('$email','$name','$newpassword','$address','$nic','$dob','$tele');");
+            $newpassword = password_hash($_POST['newpassword'], PASSWORD_BCRYPT);
+            $database->query("insert into patient(pemail,pname,ppassword, paddress,pdob,ptel) values('$email','$name','$newpassword','$address','$dob','$tele');");
             $database->query("insert into webuser values('$email','p')");
 
-            //print_r("insert into patient values($pid,'$email','$fname','$lname','$newpassword','$address','$nic','$dob','$tele');");
+            //print_r("insert into patient values($pid,'$email','$fname','$lname','$newpassword','$address', '$dob','$tele');");
             $_SESSION["user"]=$email;
             $_SESSION["usertype"]="p";
             $_SESSION["username"]=$fname;
@@ -78,7 +79,7 @@ if($_POST){
         }
         
     }else{
-        $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Password Conformation Error! Reconform Password</label>';
+        $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Password Confirmation Error! Please reconfirm password.</label>';
     }
 
 
@@ -97,8 +98,8 @@ if($_POST){
         <table border="0" style="width: 69%;">
             <tr>
                 <td colspan="2">
-                    <p class="header-text">Let's Get Started</p>
-                    <p class="sub-text">It's Okey, Now Create User Account.</p>
+                    <p class="header-text">Let's Get Started!</p>
+                    <p class="sub-text">Now Create User Account</p>
                 </td>
             </tr>
             <tr>
@@ -120,7 +121,7 @@ if($_POST){
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="tel" name="tele" class="input-text"  placeholder="ex: 0712345678" pattern="[0]{1}[0-9]{9}" >
+                    <input type="tel" name="tele" class="input-text"  placeholder="ex: 9951239876" pattern="[0-9]{10}" >
                 </td>
             </tr>
             <tr>
@@ -128,19 +129,28 @@ if($_POST){
                     <label for="newpassword" class="form-label">Create New Password: </label>
                 </td>
             </tr>
+            
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="password" name="newpassword" class="input-text" placeholder="New Password" required>
+                    <input type="password" name="newpassword" class="input-text" placeholder="New Password" pattern="^(?=.*\d).{8,}$" required>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <label for="cpassword" class="form-label">Conform Password: </label>
+                    <label for="cpassword" class="form-label">Confirm Password: </label>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="password" name="cpassword" class="input-text" placeholder="Conform Password" required>
+                    <input type="password" name="cpassword" class="input-text" placeholder="Confirm Password" required>
+                </td>
+            </tr>
+            <tr>
+                <td class="label-td" colspan="2">
+                    <ul>
+                        <li><small>Password length should be at least 8 characters.</small></li>
+                        <li><small>Password should contain numbers.</small></li>
+                    </ul>
                 </td>
             </tr>
      
