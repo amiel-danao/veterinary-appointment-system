@@ -1,18 +1,18 @@
 <div class="card card-outline-secondary my-4">
     <div class="card-header">Item Details</div>
     <div class="card-body">
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#itemDetailsTab">Item</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#itemImageTab">Upload Image</a>
-            </li>
-        </ul>
 
-        <!-- Tab panes for item details and image sections -->
-        <div class="tab-content">
-            <div id="itemDetailsTab" class="container-fluid tab-pane active">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-item-tab" data-bs-toggle="tab" data-bs-target="#nav-item"
+                    type="button" role="tab" aria-controls="nav-item" aria-selected="true">Item</button>
+                <button class="nav-link" id="nav-uploadImage-tab" data-bs-toggle="tab" data-bs-target="#nav-uploadImage"
+                    type="button" role="tab" aria-controls="nav-uploadImage" aria-selected="false">Upload Image</button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-item" role="tabpanel" aria-labelledby="nav-item-tab"
+                tabindex="0">
                 <br>
                 <!-- Div to show the ajax message from validations/db submission -->
                 <div id="itemDetailsMessage"></div>
@@ -81,12 +81,16 @@
                     <button type="button" id="deleteItem" class="btn btn-danger">Delete</button>
                     <button type="reset" class="btn" id="itemClear">Clear</button>
                 </form>
+
             </div>
-            <div id="itemImageTab" class="container-fluid tab-pane fade">
+
+            <div class="tab-pane fade" id="nav-uploadImage" role="tabpanel" aria-labelledby="nav-uploadImage-tab"
+                tabindex="0">
                 <br>
                 <div id="itemImageMessage"></div>
                 <p>You can upload an image for a particular item using this section.</p>
-                <p>Please make sure the item is already added to database before uploading the image.</p>
+                <p>Please make sure the item is already added to database before uploading the
+                    image.</p>
                 <br>
                 <form name="imageForm" id="imageForm" method="post">
                     <div class="form-row">
@@ -113,11 +117,35 @@
                         </div>
                     </div>
                     <br>
-                    <button type="button" id="updateImageButton" class="btn btn-primary">Upload Image</button>
-                    <button type="button" id="deleteImageButton" class="btn btn-danger">Delete Image</button>
+                    <button type="button" id="updateImageButton" class="btn btn-primary">Upload
+                        Image</button>
+                    <button type="button" id="deleteImageButton" class="btn btn-danger">Delete
+                        Image</button>
                     <button type="reset" class="btn">Clear</button>
                 </form>
             </div>
+        </div>
+
+
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#itemDetailsTab">Item</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#itemImageTab">Upload Image</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes for item details and image sections -->
+        <div class="tab-content">
+            <div id="itemDetailsTab" class="container-fluid tab-pane active">
+
+            </div>
+
+            <div id="itemImageTab" class="container-fluid tab-pane fade">
+
+            </div>
+
         </div>
     </div>
 </div>

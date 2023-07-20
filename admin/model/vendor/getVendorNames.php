@@ -1,12 +1,11 @@
 <?php
 	$vendorNamesSql = 'SELECT * FROM vendor';
-	$vendorNamesStatement = $conn->prepare($vendorNamesSql);
-	$vendorNamesStatement->execute();
-	
-	if($vendorNamesStatement->rowCount() > 0) {
-		while($row = $vendorNamesStatement->fetch(PDO::FETCH_ASSOC)) {
+	$stmt = $database->query($vendorNamesSql);
+	if($stmt->num_rows > 0){
+		while($row = $stmt->fetch_assoc()){
 			echo '<option value="' .$row['fullName'] . '">' . $row['fullName'] . '</option>';
 		}
 	}
-	$vendorNamesStatement->closeCursor();
+	$stmt->close()
+	
 ?>
