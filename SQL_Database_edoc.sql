@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2023 at 02:52 PM
+-- Generation Time: Jul 21, 2023 at 11:26 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -64,6 +64,28 @@ CREATE TABLE `appointment` (
 
 INSERT INTO `appointment` (`appoid`, `pid`, `apponum`, `scheduleid`, `appodate`) VALUES
 (1, 1, 1, 1, '2022-06-03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `breed`
+--
+
+CREATE TABLE `breed` (
+  `breedId` int(11) NOT NULL,
+  `speId` int(11) NOT NULL,
+  `name` varchar(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `breed`
+--
+
+INSERT INTO `breed` (`breedId`, `speId`, `name`) VALUES
+(1, 1, 'Husky'),
+(2, 1, 'Jack Russel Terrier'),
+(3, 2, 'Orenj'),
+(4, 2, 'Pusakal');
 
 -- --------------------------------------------------------
 
@@ -192,7 +214,7 @@ CREATE TABLE `patient` (
   `status` varchar(10) NOT NULL DEFAULT 'Active',
   `createdOn` timestamp NOT NULL DEFAULT current_timestamp(),
   `password` varchar(72) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `patient`
@@ -206,6 +228,21 @@ INSERT INTO `patient` (`pid`, `pemail`, `pname`, `ppassword`, `paddress`, `pnic`
 (7, 'rose@mail.com', 'Rose Mamaril', '$2y$10$Rhq4qD7ePDOLz3VQ5poTWumoR6PXkRj2sq.urjt1u8Dh3SNN6iqQ.', 'Isabela', NULL, '2002-09-14', '9953217654', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-17 05:38:00', ''),
 (8, 'jerick@mail.com', 'Jerick Arzaga', '$2y$10$9R6Kz5JhY4ULvrY.0BxJ..5v6ykA3UMffqFw6pMWC.duupRqZglnC', 'GMA', NULL, '2002-06-05', '9959873456', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-17 05:55:38', ''),
 (9, 'cj@mail.com', 'CJ Rosario', '$2y$10$mEvLmkMqYadXJSXtc/370Oo0/3cR7W5AFMx2ok.BE0D1n0esFOTA2', 'Molino', NULL, '2001-04-14', '9951234567', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-17 06:16:12', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pet`
+--
+
+CREATE TABLE `pet` (
+  `petId` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `birthday` date NOT NULL,
+  `speId` int(11) NOT NULL,
+  `breedId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -394,6 +431,26 @@ INSERT INTO `specialties` (`id`, `sname`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `species`
+--
+
+CREATE TABLE `species` (
+  `speId` int(11) NOT NULL,
+  `name` varchar(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `species`
+--
+
+INSERT INTO `species` (`speId`, `name`) VALUES
+(22, 'Dog'),
+(23, 'Cat'),
+(26, 'Horse');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -490,6 +547,12 @@ ALTER TABLE `appointment`
   ADD KEY `scheduleid` (`scheduleid`);
 
 --
+-- Indexes for table `breed`
+--
+ALTER TABLE `breed`
+  ADD PRIMARY KEY (`breedId`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -515,6 +578,12 @@ ALTER TABLE `patient`
   ADD PRIMARY KEY (`pid`);
 
 --
+-- Indexes for table `pet`
+--
+ALTER TABLE `pet`
+  ADD PRIMARY KEY (`petId`);
+
+--
 -- Indexes for table `purchase`
 --
 ALTER TABLE `purchase`
@@ -538,6 +607,12 @@ ALTER TABLE `schedule`
 --
 ALTER TABLE `specialties`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `species`
+--
+ALTER TABLE `species`
+  ADD PRIMARY KEY (`speId`);
 
 --
 -- Indexes for table `user`
@@ -568,6 +643,12 @@ ALTER TABLE `appointment`
   MODIFY `appoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `breed`
+--
+ALTER TABLE `breed`
+  MODIFY `breedId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
@@ -592,6 +673,12 @@ ALTER TABLE `patient`
   MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `pet`
+--
+ALTER TABLE `pet`
+  MODIFY `petId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
@@ -608,6 +695,12 @@ ALTER TABLE `sale`
 --
 ALTER TABLE `schedule`
   MODIFY `scheduleid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `species`
+--
+ALTER TABLE `species`
+  MODIFY `speId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `user`
