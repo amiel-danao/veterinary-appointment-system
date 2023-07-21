@@ -43,6 +43,16 @@
     } ?>">
         <i class="bi bi-person-vcard-fill"></i> Patients
     </a>
+    <a href="species.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'species.php') {
+        echo 'active';
+    } ?>">
+        <i class="bi bi-egg-fill"></i> Species
+    </a>
+    <a href="breed.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'breed.php') {
+        echo 'active';
+    } ?>">
+        <i class="bi bi-bookmark-heart-fill"></i> Breed
+    </a>
 
 
     <div class="dropdown">
@@ -62,12 +72,12 @@
         </a>
         <ul class="dropdown-menu">
             <div class=" list-group">
-                <a href="../admin/invItem.php" class="list-group-item list-group-item-action  <?php if (basename($_SERVER['PHP_SELF']) == 'invItem.php') {
+                <a href="invItem.php" class="list-group-item list-group-item-action  <?php if (basename($_SERVER['PHP_SELF']) == 'invItem.php') {
                     echo 'active';
                 } ?>">
                     <i class="bi bi-box2-fill"></i> Item
                 </a>
-                <a href="../admin/invPurchase.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'invPurchase.php') {
+                <a href="invPurchase.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'invPurchase.php') {
                     echo 'active';
                 } ?>">
                     <i class="bi bi-cash-stack"></i> Purchase
