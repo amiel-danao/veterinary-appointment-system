@@ -1,3 +1,16 @@
+<?php
+$rootUrl = 'http';
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    $rootUrl .= 's';
+}
+$rootUrl .= '://' . $_SERVER['HTTP_HOST'];
+
+// $rootUrl .= dirname($_SERVER['SCRIPT_NAME']);
+
+echo $rootUrl;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,6 +104,12 @@
                 <tr class="menu-row">
                     <td class="menu-btn menu-icon-doctor">
                         <a href="doctors.php" class="non-style-link-menu"><div><p class="menu-text">All Doctors</p></a></div>
+                    </td>
+                </tr>
+
+                <tr class="menu-row">
+                    <td class="menu-btn menu-icon-doctor">
+                        <a href="<?php echo $rootUrl; ?>/pet/petListPage.php" class="non-style-link-menu"><div><p class="menu-text">My Pets</p></a></div>
                     </td>
                 </tr>
                 
