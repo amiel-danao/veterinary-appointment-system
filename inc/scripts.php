@@ -23,7 +23,7 @@
         myDropdown.show();
     }
 </script>
-
+<!-- Species -->
 <script>
     const addButtons = $(".specie-edit");
     addButtons.on("click", function () {
@@ -35,13 +35,13 @@
                     if (this.readyState == 4 && this.status == 200) {
                         bootbox.alert(this.responseText);
                         if (this.responseText == "Update Success!") {
-                            $(`#name-${id}`).text(` ${result}`);
+                            $(`#speName-${id}`).text(`${result}`);
                         }
                     }
                 };
                 xhttp.open("POST", "editSpecie.php", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("data=" + result + "&speId=" + id);
+                xhttp.send("data=" + result.toLowerCase().trim() + "&speId=" + id);
             } else if (!(result === null)) {
                 alert("Invalid Input!");
             }
@@ -97,7 +97,131 @@
                 };
                 xhttp.open("POST", "addSpecie.php", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("specName=" + result);
+                xhttp.send("specName=" + result.toLowerCase().trim());
+            } else if (!(result === null)) {
+                alert("Invalid Input!");
+            }
+        });
+    });
+</script>
+<!-- Breed -->
+<script>
+    const editBreed = $(".breed-edit");
+    editBreed.on("click", function () {
+        var breedid = $(this).attr('id');
+        bootbox.prompt('Replace the breed chosen below: ', function (result) {
+            if (!(result === null || result === undefined || result.trim() === '')) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        bootbox.alert(this.responseText);
+                        if (this.responseText == "Update Success!") {
+                            $(`#breedName-${breedid}`).text(`${result}`);
+                        }
+                    }
+                };
+                xhttp.open("POST", "editBreed.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("data=" + result.toLowerCase().trim() + "&breedId=" + breedid);
+            } else if (!(result === null)) {
+                alert("Invalid Input!");
+            }
+        });
+    });
+</script>
+
+<script>
+    <?php include('../admin/getSpecieForBreedEdit.php'); ?>
+    const editBreedSpecie = $(".specie-breed-edit");
+    editBreedSpecie.on("click", function () {
+        var breedSpecid = $(this).attr('id');
+        var bsId = breedSpecid.split('_');
+        var bId = bsId[0];
+        var sId = bsId[1];
+        var idArray = <?php echo $idArray ?>;
+        var nameArray = <?php echo $nameArray ?>;
+        var inputArray = [];
+        for (let i = 0; i < idArray.length; ++i) {
+            var origString = nameArray[i];
+            var finalString = origString.charAt(0).toUpperCase() + origString.slice(1);
+            inputArray.push({
+                text: finalString,
+                value: idArray[i],
+            });
+        }
+        bootbox.prompt({
+            title: 'Replace the Specie of the Breed below:',
+            inputType: 'radio',
+            inputOptions: inputArray,
+            callback: function (result) {
+                if (result != null) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            bootbox.alert(this.responseText);
+                            if (this.responseText == "Update Success!") {
+                                location.reload();
+                            }
+                        }
+                    };
+                    xhttp.open("POST", "editBreedSpec.php",
+                        true); // Leave URL blank as it's the same file
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send("specId=" + result + "&breedId=" + bId);
+                }
+            }
+        });
+    });
+</script>
+<script>
+    const deleteBreed = $(".breed-delete");
+    deleteBreed.on("click", function () {
+        var id = $(this).attr('id');
+        bootbox.confirm({
+            message: 'Are you sure on deleting this breed?',
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            location.reload();
+                        }
+                    };
+                    xhttp.open("POST", "deleteBreed.php", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send("breedId=" + id);
+                }
+            }
+        });
+    });
+</script>
+<script>
+    const addBreed = $(".add-breed");
+    addBreed.on("click", function () {
+        bootbox.prompt('Add a breed below: ', function (result) {
+            if (!(result === null || result === undefined || result.trim() === '')) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        bootbox.alert(this.responseText);
+                        if (this.responseText == "Breed successfully added!") {
+                            location.reload();
+                        }
+                    }
+                };
+                xhttp.open("POST", "addBreed.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("breedName=" + result.toLowerCase().trim());
             } else if (!(result === null)) {
                 alert("Invalid Input!");
             }

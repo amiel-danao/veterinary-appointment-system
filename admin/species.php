@@ -12,17 +12,17 @@
 
     <title>Species</title>
     <style>
-        .dashbord-tables {
-            animation: transitionIn-Y-over 0.5s;
-        }
+    .dashbord-tables {
+        animation: transitionIn-Y-over 0.5s;
+    }
 
-        .filter-container {
-            animation: transitionIn-Y-bottom 0.5s;
-        }
+    .filter-container {
+        animation: transitionIn-Y-bottom 0.5s;
+    }
 
-        .sub-table {
-            animation: transitionIn-Y-bottom 0.5s;
-        }
+    .sub-table {
+        animation: transitionIn-Y-bottom 0.5s;
+    }
     </style>
 
 
@@ -100,8 +100,7 @@
                 <tr>
                     <td colspan="4" style="padding-top:10px;">
                         <p class="heading-main12" style="margin-left: 45px;font-size:18px;color:rgb(49, 49, 49)">All
-                            Species (
-                            <?php echo $list11->num_rows; ?>)
+                            Species (<?php echo $list11->num_rows; ?>)
                         </p>
                     </td>
                     <td colspan="4" style="padding-top:10px;">
@@ -127,10 +126,10 @@
                                     <thead>
                                         <tr>
                                             <th class="table-headin">
-                                                Name
+                                                Name of Species
                                             </th>
                                             <th class="table-headin">
-                                                Customize
+                                                Customize Species
                                             </th>
                                         </tr>
                                     </thead>
@@ -147,7 +146,7 @@
                                     
                                     <br>
                                     <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">We  couldnt find anything related to your keywords !</p>
-                                    <a class="non-style-link" href="patient.php"><button  class="login-btn btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin-left:20px;">&nbsp; Show all Patients &nbsp;</font></button>
+                                    <a class="non-style-link" href="species.php"><button  class="login-btn btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin-left:20px;">&nbsp; Show All Species &nbsp;</font></button>
                                     </a>
                                     </center>
                                     <br><br><br><br>
@@ -160,18 +159,16 @@
                                                 $specieId = $row["speId"];
                                                 echo
                                                     '<tr>
-                                        <td id="name-' . $specieId . '">
-                                        ' . substr($name, 0, 35) . '
+                                        <td id="speName-' . $specieId . '">
+                                        ' . substr(ucwords($name), 0, 35) . '
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                                <button id="' . $specieId . '" type="button" class="btn btn-warning specie-edit">Edit</button>
+                                                <button id="' . $specieId . '" type="button" class="btn btn-warning specie-edit">Edit Specie</button>
                                                 <button id="' . $specieId . '" type="button" class="btn btn-danger specie-delete">Delete</button>         
                                             </div>
                                         </td>
-                                        <td>
-                                            
-                                        </td>
+                                        
                                     </tr>';
 
                                             }

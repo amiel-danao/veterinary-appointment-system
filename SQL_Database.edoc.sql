@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2023 at 11:26 AM
+-- Generation Time: Jul 22, 2023 at 10:05 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -82,10 +82,12 @@ CREATE TABLE `breed` (
 --
 
 INSERT INTO `breed` (`breedId`, `speId`, `name`) VALUES
-(1, 1, 'Husky'),
-(2, 1, 'Jack Russel Terrier'),
-(3, 2, 'Orenj'),
-(4, 2, 'Pusakal');
+(1, 32, 'husky'),
+(2, 1, 'jack russel terrier'),
+(3, 1, 'ginger'),
+(6, 2, 'puspin'),
+(9, 1, 'askal'),
+(10, 2, 'orenj');
 
 -- --------------------------------------------------------
 
@@ -444,9 +446,10 @@ CREATE TABLE `species` (
 --
 
 INSERT INTO `species` (`speId`, `name`) VALUES
-(22, 'Dog'),
-(23, 'Cat'),
-(26, 'Horse');
+(1, 'dog'),
+(2, 'cat'),
+(32, 'goose'),
+(33, 'chicken');
 
 -- --------------------------------------------------------
 
@@ -646,7 +649,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `breed`
 --
 ALTER TABLE `breed`
-  MODIFY `breedId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `breedId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -700,7 +703,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `species`
 --
 ALTER TABLE `species`
-  MODIFY `speId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `speId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `user`
