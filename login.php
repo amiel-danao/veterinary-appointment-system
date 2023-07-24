@@ -20,44 +20,44 @@
 
     //learn from w3schools.com
     //Unset all the server side variables
-
+    
     session_start();
 
-    $_SESSION["user"]="";
-    $_SESSION["usertype"]="";
-    
+    $_SESSION["user"] = "";
+    $_SESSION["usertype"] = "";
+
     // Set the new timezone
     date_default_timezone_set('Asia/Manila');
     $date = date('Y-m-d');
 
-    $_SESSION["date"]=$date;
-    
+    $_SESSION["date"] = $date;
+
 
     //import database
     include("connection.php");
 
-    
 
 
 
-    if($_POST){
-        $email=$_POST['useremail'];
-        $password=$_POST['userpassword'];
-        
-        $error='<label for="promter" class="form-label"></label>';
+
+    if ($_POST) {
+        $email = $_POST['useremail'];
+        $password = $_POST['userpassword'];
+
+        $error = '<label for="promter" class="form-label"></label>';
 
         $result = $database->query("select * from webuser where email='$email'");
-        if($result->num_rows==1){
-            $utype=$result->fetch_assoc()['usertype'];
-            if ($utype=='p'){
+        if ($result->num_rows == 1) {
+            $utype = $result->fetch_assoc()['usertype'];
+            if ($utype == 'p') {
                 //TODO
                 $query = "SELECT pemail FROM patient WHERE pemail = '$email'";
                 $checkUserStatement = $database->query($query);
                 $numOfUsers = $checkUserStatement->num_rows;
-                if ($numOfUsers == 1){
+                if ($numOfUsers == 1) {
                     //   Patient dashbord
                     $query = "SELECT ppassword FROM patient WHERE pemail = '$email'";
-                    $stmt = $database->query($query);                    
+                    $stmt = $database->query($query);
                     $ppassword = $stmt->fetch_assoc();
                     if (password_verify($password, $ppassword['ppassword'])) { // password_verify($password, $ppassword['ppassword']) // $ppassword['ppassword'] == $password //
                         echo '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Login success! Redirecting you to home page...</div>';
@@ -67,12 +67,12 @@
                     } else {
                         $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
                     }
-                    
-                }else{
-                    $error= '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+
+                } else {
+                    $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
                 }
 
-            } else if($utype=='a'){
+            } else if ($utype == 'a') {
                 //TODO
                 $query = "SELECT aemail FROM admin WHERE aemail = '$email'";
                 $checkUserStatement = $database->query($query);
@@ -93,12 +93,12 @@
                         $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
                     }
 
-                }else{
-                    $error= '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+                } else {
+                    $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
                 }
 
 
-            }elseif($utype=='d'){
+            } elseif ($utype == 'd') {
                 //TODO
                 $query = "SELECT docemail FROM doctor WHERE docemail = '$email'";
                 $checkUserStatement = $database->query($query);
@@ -117,14 +117,14 @@
                         $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
                     }
 
-                }else{
-                    $error= '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
+                } else {
+                    $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Wrong credentials: Invalid email or password</label>';
                 }
 
             }
-            
-        }else{
-            $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">We cant found any acount for this email.</label>';
+
+        } else {
+            $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">We cant found any acount for this email.</label>';
         }
 
 
@@ -132,9 +132,9 @@
 
 
 
-        
-    }else{
-        $error='<label for="promter" class="form-label">&nbsp;</label>';
+
+    } else {
+        $error = '<label for="promter" class="form-label">&nbsp;</label>';
     }
 
     ?>
