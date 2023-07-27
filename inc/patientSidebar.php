@@ -32,7 +32,7 @@
     } ?>" aria-current="true">
         <i class="bi bi-heart-pulse-fill"></i> All Doctors
     </a>
-    <a href="../pet/petListPage.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'petListPage.php' || basename($_SERVER['PHP_SELF']) == 'addPetPage.php') {
+    <a href="../pet/petListPage.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'petListPage.php' || basename($_SERVER['PHP_SELF']) == 'addPetPage.php' || basename($_SERVER['PHP_SELF']) == 'editPetPage.php') {
         echo 'active';
     } ?>" aria-current="true">
         <i class="bi bi-bookmark-heart-fill"></i> My Pets

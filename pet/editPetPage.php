@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Add Pets</title>
+    <title>Edit Pet</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
@@ -28,6 +28,10 @@
     } else {
         header("location: ../login.php");
     }
+    if (isset($_GET['id'])) {
+        $petId = $_GET['id'];
+        // Use the $petId as needed in your page logic
+    }
 
     include("../connection.php");
 
@@ -41,6 +45,23 @@
     $userid = $userfetch["pid"];
     $username = $userfetch["pname"];
 
+    $stmt = $database->query("SELECT * FROM pet WHERE petId='$petId'");
+    $petDetails = $stmt->fetch_assoc();
+
+    $petName = $petDetails['name'];
+
+    $petBirthday = $petDetails['birthday'];
+
+    $petSpeId = $petDetails['speId'];
+    $petSpecie = $database->query("SELECT name FROM species WHERE speId='$petSpeId'");
+    $petSpecie = $petSpecie->fetch_assoc();
+    $petSpecieName = $petSpecie['name'];
+
+    $petBreedId = $petDetails['breedId'];
+    $petBreed = $database->query("SELECT name FROM breed WHERE breedId='$petBreedId'");
+    $petBreed = $petBreed->fetch_assoc();
+    $petBreedName = $petBreed['name'];
+
     ?>
     <div class="container">
         <div class="menu">
@@ -48,18 +69,26 @@
         </div>
         <div class="dash-body" style="margin-top: 15px; padding-left:40px">
             <a href="#" onclick="goBack()" class="btn btn-primary mt-3">Back</a>
-            <h1 class="mt-4">Add Pet</h1>
+            <h1 class="mt-4">Edit Pet</h1>
             <form id="petForm" class="row g-3" method="POST">
                 <div class="col-md-6">
-                    <label for="petName" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="petName" placeholder="Enter pet name..." required>
+                    <label for="petName" class="form-label">Name (Current Name:
+                        <?php echo ucwords($petName); ?>)
+                    </label>
+                    <input type="text" class="form-control" id="petName"
+                        placeholder="Enter <?php echo ucwords($petName); ?>'s new name..."
+                        value="<?php echo ucwords($petName); ?>" required>
                 </div>
                 <div class="col-md-3">
-                    <label for="birthdate">Select your birthdate:</label>
+                    <label for="birthdate">Birthdate (Current:
+                        <?php echo $petBirthday; ?>)
+                    </label>
                     <input type="date" id="birthdate" name="birthdate" min="2000-01-01" max="2050-12-31" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="specieSelect" class="form-label">Specie</label>
+                    <label for="specieSelect" class="form-label">Specie (Current Specie:
+                        <?php echo ucwords($petSpecieName) ?>)
+                    </label>
                     <select id="specieSelect" class="form-select">
                         <?php
                         $stmt = $database->query("SELECT * FROM species");
@@ -72,7 +101,9 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="breedSelect" class="form-label">Breed</label>
+                    <label for="breedSelect" class="form-label">Breed (Current Breed:
+                        <?php echo ucwords($petBreedName) ?>)
+                    </label>
                     <select id="breedSelect" class="form-select">
                         <?php
                         $stmt = $database->query("SELECT * FROM breed WHERE speId=1");
@@ -86,10 +117,9 @@
                 </div>
                 <br>
                 <div>
-                    <button type="submit" class="btn btn-primary add-pet">Add New Pet</button>
+                    <button type="submit" id="<?php echo $petId; ?>" class="btn btn-primary edit-pet">Edit Pet</button>
                 </div>
             </form>
-
         </div>
     </div>
 
@@ -99,6 +129,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+
     <?php include('../inc/scripts.php') ?>
 </body>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2023 at 10:05 AM
+-- Generation Time: Jul 27, 2023 at 05:26 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -82,12 +82,16 @@ CREATE TABLE `breed` (
 --
 
 INSERT INTO `breed` (`breedId`, `speId`, `name`) VALUES
-(1, 32, 'husky'),
+(1, 1, 'husky'),
 (2, 1, 'jack russel terrier'),
-(3, 1, 'ginger'),
-(6, 2, 'puspin'),
+(3, 2, 'ginger'),
+(6, 1, 'shih tzu'),
 (9, 1, 'askal'),
-(10, 2, 'orenj');
+(10, 2, 'orenj'),
+(11, 4, 'rhode island red'),
+(12, 4, 'jersey giant'),
+(13, 3, 'embden goose'),
+(14, 3, 'greylag goose');
 
 -- --------------------------------------------------------
 
@@ -245,6 +249,18 @@ CREATE TABLE `pet` (
   `speId` int(11) NOT NULL,
   `breedId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pet`
+--
+
+INSERT INTO `pet` (`petId`, `pid`, `name`, `birthday`, `speId`, `breedId`) VALUES
+(1, 5, 'keima', '2018-06-11', 1, 1),
+(2, 6, 'shiro', '2023-03-16', 1, 9),
+(3, 5, 'yukki', '2020-04-18', 1, 6),
+(5, 5, 'buntit', '2022-04-06', 2, 10),
+(9, 5, 'chonkejiataba', '2023-07-02', 2, 10),
+(14, 5, 'niggato kuro', '2023-07-03', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -448,8 +464,8 @@ CREATE TABLE `species` (
 INSERT INTO `species` (`speId`, `name`) VALUES
 (1, 'dog'),
 (2, 'cat'),
-(32, 'goose'),
-(33, 'chicken');
+(3, 'goose'),
+(4, 'chicken');
 
 -- --------------------------------------------------------
 
@@ -649,7 +665,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `breed`
 --
 ALTER TABLE `breed`
-  MODIFY `breedId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `breedId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -679,7 +695,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `petId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `petId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `purchase`

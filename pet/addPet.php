@@ -7,7 +7,7 @@ if (isset($_POST)) {
     while ($breedDetails = $stmt->fetch_assoc()) {
         $breedId = $breedDetails['breedId'];
         $breedName = $breedDetails['name'];
-        $breedArray[$breedId] = $breedName;
+        $breedArray[$breedId] = ucwords($breedName);
     }
     echo json_encode($breedArray);
 }

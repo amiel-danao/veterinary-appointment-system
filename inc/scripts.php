@@ -249,6 +249,7 @@ var specie = $('#specieSelect').on('change', function(event) {
     xhttp.send("specieId=" + specieId);
 });
 </script>
+
 <script>
 const addPet = $(".add-pet");
 addPet.on("click", function() {
@@ -260,7 +261,7 @@ addPet.on("click", function() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText == "This pet already exists!") {
+            if (this.responseText == "Insufficient Details!") {
                 bootbox.alert(this.responseText);
             } else {
                 bootbox.alert(this.responseText);
@@ -272,5 +273,85 @@ addPet.on("click", function() {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("petName=" + petName.toLowerCase().trim() + "&bday=" + bday + "&specieId=" + specie +
         "&breedId=" + breed + "&pemail=" + pemail);
+});
+</script>
+
+<script>
+function goBack() {
+    // Go back to the previous page in the browser's history
+    window.history.back();
+}
+</script>
+<script>
+$(document).ready(function() {
+    // Attach click event handler to the links with class "pet-edit"
+    $(".pet-edit").on("click", function(event) {
+        // Prevent the default link behavior (navigation)
+        event.preventDefault();
+
+        // Get the id of the clicked link
+        var clickedId = $(this).attr("id");
+
+        // Redirect to editPetPage.php with the id as a URL parameter
+        window.location.href = "editPetPage.php?id=" + clickedId;
+    });
+});
+</script>
+<script>
+const editPet = $(".edit-pet");
+editPet.on("click", function() {
+    var petId = $(this).attr('id');
+    var petName = $("#petName").val();
+    var bday = $("#birthdate").val();
+    var specie = $("#specieSelect")[0].selectedOptions[0].id;
+    var breed = $("#breedSelect")[0].selectedOptions[0].id;
+    var pemail = '<?php echo $_SESSION['user'] ?>';
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == "You did not changed anything!" || this.responseText ==
+                "Insufficient Details!") {
+                bootbox.alert(this.responseText);
+            } else {
+                window.location.href = "../pet/petListPage.php";
+            }
+        }
+    };
+    xhttp.open("POST", "editPetCheck.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("petName=" + petName.toLowerCase().trim() + "&bday=" + bday + "&specieId=" + specie +
+        "&breedId=" + breed + "&pemail=" + pemail + "&petId=" + petId);
+});
+</script>
+<script>
+const deletePet = $(".pet-delete");
+deletePet.on("click", function() {
+    var id = $(this).attr('id');
+    bootbox.confirm({
+        message: 'Are you sure on deleting this breed?',
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function(result) {
+            if (result) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        location.reload();
+                    }
+                };
+                xhttp.open("POST", "deletePet.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("petId=" + id);
+            }
+        }
+    });
 });
 </script>

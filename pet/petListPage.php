@@ -84,23 +84,26 @@
                         $specieName = $specieOfBreed['name'];
                         // calculate age here from pet birthday (current date - birthday)
                         echo "<tr>";
-                        echo "<td id='$petId'>" . $row['name'] . "</td>";
-                        echo "<td id='specieName'>" . $specieName . "</td>";
-                        echo "<td id='breedName'>" . $breedName . "</td>";
+                        echo "<td id='$petId'>" . ucwords($row['name']) . "</td>";
+                        echo "<td id='specieName'>" . ucwords($specieName) . "</td>";
+                        echo "<td id='breedName'>" . ucwords($breedName) . "</td>";
                         echo "<td id='petBday'>" . $row['birthday'] . "</td>";
-                        echo "<td> <div class='btn-group' role='group' aria-label='Basic mixed styles example'>
-                                            <button id='$petId' type='button' class='btn btn-warning pet-edit'>Edit Pet</button>
-                                            <button id='$petId' type='button' class='btn btn-danger pet-delete'>Delete</button> </td>
-                                        </div>";
+                        echo "<td>
+                                <div class='btn-group' role='group' aria-label='Basic mixed styles example'>
+                                    <a href='editPetPage.php' id='$petId' type='button' class='btn btn-warning pet-edit'>Edit Pet</a>
+                                    <button id='$petId' type='button' class='btn btn-danger pet-delete'>Delete</button>
+                                </div>
+                            </td>";
 
                         echo "</tr>";
+                        
                     }
                     // Close the MySQL connection
                     mysqli_close($database);
                     ?>
                 </tbody>
             </table>
-            <a href="addPetPage.php?>" class="btn btn-primary mt-3">Add New Pet</a>
+            <a href="addPetPage.php" class="btn btn-primary mt-3">Add New Pet</a>
         </div>
 
 
@@ -113,11 +116,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-    $(document).ready(function() {
-        $('#petTable').DataTable();
-    });
-    </script>
+
     <?php include('../inc/scripts.php') ?>
 </body>
 
