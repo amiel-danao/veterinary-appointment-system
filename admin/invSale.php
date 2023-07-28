@@ -12,17 +12,17 @@
 
     <title>Dashboard</title>
     <style>
-    .dashbord-tables {
-        animation: transitionIn-Y-over 0.5s;
-    }
+        .dashbord-tables {
+            animation: transitionIn-Y-over 0.5s;
+        }
 
-    .filter-container {
-        animation: transitionIn-Y-bottom 0.5s;
-    }
+        .filter-container {
+            animation: transitionIn-Y-bottom 0.5s;
+        }
 
-    .sub-table {
-        animation: transitionIn-Y-bottom 0.5s;
-    }
+        .sub-table {
+            animation: transitionIn-Y-bottom 0.5s;
+        }
     </style>
 
 
@@ -55,6 +55,8 @@
         </div>
     </div>
     <?php include('../inc/scripts.php'); ?>
+    <script src="../inc/invScripts.js"></script>
+
 </body>
 
 </html>

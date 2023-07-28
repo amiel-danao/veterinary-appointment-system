@@ -70,12 +70,12 @@
         <div class="dash-body" style="margin-top: 15px; padding-left:40px">
             <a href="#" onclick="goBack()" class="btn btn-primary mt-3">Back</a>
             <h1 class="mt-4">Edit Pet</h1>
-            <form id="petForm" class="row g-3" method="POST">
+            <form id="petForm" class="row g-3" method="post" action="editPetCheck.php">
                 <div class="col-md-6">
                     <label for="petName" class="form-label">Name (Current Name:
                         <?php echo ucwords($petName); ?>)
                     </label>
-                    <input type="text" class="form-control" id="petName"
+                    <input type="text" name="petName" class="form-control" id="petName"
                         placeholder="Enter <?php echo ucwords($petName); ?>'s new name..."
                         value="<?php echo ucwords($petName); ?>" required>
                 </div>
@@ -89,13 +89,13 @@
                     <label for="specieSelect" class="form-label">Specie (Current Specie:
                         <?php echo ucwords($petSpecieName) ?>)
                     </label>
-                    <select id="specieSelect" class="form-select">
+                    <select id="specieSelect" name="specie" class="form-select">
                         <?php
                         $stmt = $database->query("SELECT * FROM species");
                         while ($specieDetails = $stmt->fetch_assoc()) {
                             $specieName = $specieDetails['name'];
                             $specieId = $specieDetails['speId'];
-                            echo "<option id='$specieId'>" . ucwords($specieName) . "</option>";
+                            echo "<option id='$specieId' value='$specieId'>" . ucwords($specieName) . "</option>";
                         }
                         ?>
                     </select>
@@ -104,17 +104,19 @@
                     <label for="breedSelect" class="form-label">Breed (Current Breed:
                         <?php echo ucwords($petBreedName) ?>)
                     </label>
-                    <select id="breedSelect" class="form-select">
+                    <select id="breedSelect" name="breed" class="form-select">
                         <?php
                         $stmt = $database->query("SELECT * FROM breed WHERE speId=1");
                         while ($specieDetails = $stmt->fetch_assoc()) {
                             $breedName = $specieDetails['name'];
                             $breedId = $specieDetails['breedId'];
-                            echo "<option id='$breedId'>" . ucwords($breedName) . "</option>";
+                            echo "<option id='$breedId' value='$breedId'>" . ucwords($breedName) . "</option>";
                         }
                         ?>
                     </select>
                 </div>
+                <input type="hidden" name="pid" value="<?php echo htmlspecialchars($userid); ?>">
+                <input type="hidden" name="petId" value="<?php echo htmlspecialchars($petId); ?>">
                 <br>
                 <div>
                     <button type="submit" id="<?php echo $petId; ?>" class="btn btn-primary edit-pet">Edit Pet</button>

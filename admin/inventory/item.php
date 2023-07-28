@@ -40,7 +40,7 @@
                         <div class="form-group col-md-2">
                             <label for="itemDetailsStatus">Status</label>
                             <select id="itemDetailsStatus" name="itemDetailsStatus" class="form-control chosenSelect">
-                                <?php include('inc/statusList.html'); ?>
+                                <?php include('../inc/statusList.html'); ?>
                             </select>
                         </div>
                     </div>
@@ -127,25 +127,6 @@
         </div>
 
 
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#itemDetailsTab">Item</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#itemImageTab">Upload Image</a>
-            </li>
-        </ul>
 
-        <!-- Tab panes for item details and image sections -->
-        <div class="tab-content">
-            <div id="itemDetailsTab" class="container-fluid tab-pane active">
-
-            </div>
-
-            <div id="itemImageTab" class="container-fluid tab-pane fade">
-
-            </div>
-
-        </div>
     </div>
 </div>

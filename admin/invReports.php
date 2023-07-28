@@ -55,6 +55,8 @@
         </div>
     </div>
     <?php include('../inc/scripts.php'); ?>
+    <script src="../inc/invScripts.js"></script>
+
 </body>
 
 </html>
