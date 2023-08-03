@@ -37,7 +37,7 @@
     } ?>" aria-current="true">
         <i class="bi bi-bookmark-heart-fill"></i> My Pets
     </a>
-    <a href="../patient/schedule.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'schedule.php') {
+    <a href="../patient/schedule.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'schedule.php' || basename($_SERVER['PHP_SELF']) == 'booking.php') {
         echo 'active';
     } ?>" aria-current="true">
         <i class="bi bi-journal-medical"></i> Scheduled Sessions

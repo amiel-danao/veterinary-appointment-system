@@ -25,18 +25,18 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
 
     <title>Dashboard</title>
     <style>
-    .dashbord-tables {
-        animation: transitionIn-Y-over 0.5s;
-    }
+        .dashbord-tables {
+            animation: transitionIn-Y-over 0.5s;
+        }
 
-    .filter-container {
-        animation: transitionIn-Y-bottom 0.5s;
-    }
+        .filter-container {
+            animation: transitionIn-Y-bottom 0.5s;
+        }
 
-    .sub-table,
-    .anime {
-        animation: transitionIn-Y-bottom 0.5s;
-    }
+        .sub-table,
+        .anime {
+            animation: transitionIn-Y-bottom 0.5s;
+        }
     </style>
 
 
@@ -102,19 +102,19 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
                         </p>
                         <p class="heading-sub12" style="padding: 0;margin: 0;">
                             <?php
-                        date_default_timezone_set('Asia/Kolkata');
+                            date_default_timezone_set('Asia/Kolkata');
 
-                        $today = date('Y-m-d');
-                        echo $today;
-
-
-                        $patientrow = $database->query("select  * from  patient;");
-                        $doctorrow = $database->query("select  * from  doctor;");
-                        $appointmentrow = $database->query("select  * from  appointment where appodate>='$today';");
-                        $schedulerow = $database->query("select  * from  schedule where scheduledate='$today';");
+                            $today = date('Y-m-d');
+                            echo $today;
 
 
-                        ?>
+                            $patientrow = $database->query("select  * from  patient;");
+                            $doctorrow = $database->query("select  * from  doctor;");
+                            $appointmentrow = $database->query("select  * from  appointment where appodate>='$today';");
+                            $schedulerow = $database->query("select  * from  schedule where scheduledate='$today';");
+
+
+                            ?>
                         </p>
                     </td>
                     <td width="10%">
@@ -154,20 +154,20 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
                                                 list="doctors" style="width:45%;">&nbsp;&nbsp;
 
                                             <?php
-                                        echo '<datalist id="doctors">';
-                                        $list11 = $database->query("select  docname,docemail from  doctor;");
+                                            echo '<datalist id="doctors">';
+                                            $list11 = $database->query("select  docname,docemail from  doctor;");
 
-                                        for ($y = 0; $y < $list11->num_rows; $y++) {
-                                            $row00 = $list11->fetch_assoc();
-                                            $d = $row00["docname"];
+                                            for ($y = 0; $y < $list11->num_rows; $y++) {
+                                                $row00 = $list11->fetch_assoc();
+                                                $d = $row00["docname"];
 
-                                            echo "<option value='$d'><br/>";
+                                                echo "<option value='$d'><br/>";
 
-                                        }
-                                        ;
+                                            }
+                                            ;
 
-                                        echo ' </datalist>';
-                                        ?>
+                                            echo ' </datalist>';
+                                            ?>
 
 
                                             <input type="Submit" value="Search" class="login-btn btn-primary btn"
@@ -202,7 +202,7 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="width: 25%;">
+                                        <td style="width: 25%;" hidden>
                                             <div class="dashboard-items"
                                                 style="padding:20px;margin:auto;width:95%;display: flex">
                                                 <div>
@@ -218,7 +218,7 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
                                                 </div>
                                             </div>
                                         </td>
-                                        <td style="width: 25%;">
+                                        <td style="width: 25%;" hidden>
                                             <div class="dashboard-items"
                                                 style="padding:20px;margin:auto;width:95%;display: flex;">
                                                 <div>
@@ -323,13 +323,13 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
                                     <tbody>
 
                                         <?php
-                                    $nextweek = date("Y-m-d", strtotime("+1 week"));
-                                    $sqlmain = "select * from schedule inner join appointment on schedule.scheduleid=appointment.scheduleid inner join patient on patient.pid=appointment.pid inner join doctor on schedule.docid=doctor.docid  where  patient.pid=$userid  and schedule.scheduledate>='$today' order by schedule.scheduledate asc";
-                                    //echo $sqlmain;
-                                    $result = $database->query($sqlmain);
+                                        $nextweek = date("Y-m-d", strtotime("+1 week"));
+                                        $sqlmain = "select * from schedule inner join appointment on schedule.scheduleid=appointment.scheduleid inner join patient on patient.pid=appointment.pid inner join doctor on schedule.docid=doctor.docid  where  patient.pid=$userid  and schedule.scheduledate>='$today' order by schedule.scheduledate asc";
+                                        //echo $sqlmain;
+                                        $result = $database->query($sqlmain);
 
-                                    if ($result->num_rows == 0) {
-                                        echo '<tr>
+                                        if ($result->num_rows == 0) {
+                                            echo '<tr>
                                                     <td colspan="4">
                                                     <br><br><br><br>
                                                     <center>
@@ -344,23 +344,23 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
                                                     </td>
                                                     </tr>';
 
-                                    } else {
-                                        for ($x = 0; $x < $result->num_rows; $x++) {
-                                            $row = $result->fetch_assoc();
-                                            $scheduleid = $row["scheduleid"];
-                                            $title = $row["title"];
-                                            $apponum = $row["apponum"];
-                                            $docname = $row["docname"];
-                                            $scheduledate = $row["scheduledate"];
-                                            $scheduletime = $row["scheduletime"];
+                                        } else {
+                                            for ($x = 0; $x < $result->num_rows; $x++) {
+                                                $row = $result->fetch_assoc();
+                                                $scheduleid = $row["scheduleid"];
+                                                $title = $row["title"];
+                                                $apponum = $row["apponum"];
+                                                $docname = $row["docname"];
+                                                $scheduledate = $row["scheduledate"];
+                                                $scheduletime = $row["scheduletime"];
 
-                                            echo '<tr>
+                                                echo '<tr>
                                                         <td style="padding:30px;font-size:25px;font-weight:700;"> &nbsp;' .
-                                                $apponum
-                                                . '</td>
+                                                    $apponum
+                                                    . '</td>
                                                         <td style="padding:20px;"> &nbsp;' .
-                                                substr($title, 0, 30)
-                                                . '</td>
+                                                    substr($title, 0, 30)
+                                                    . '</td>
                                                         <td>
                                                         ' . substr($docname, 0, 20) . '
                                                         </td>
@@ -372,10 +372,10 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
                                                        
                                                     </tr>';
 
+                                            }
                                         }
-                                    }
 
-                                    ?>
+                                        ?>
 
                                     </tbody>
 
@@ -398,6 +398,7 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
         </div>
     </div>
 
-    <<?php include('../inc/scripts.php') ?> </body>
+    <?php include('../inc/scripts.php') ?>
+</body>
 
 </html>
