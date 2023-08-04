@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/profile-pic.css">
     <?php include('../inc/header.php') ?>
+    <style>
 
+    </style>
 
 </head>
 
@@ -70,7 +73,26 @@
         <div class="dash-body" style="margin-top: 15px; padding-left:40px">
             <a href="#" onclick="goBack()" class="btn btn-primary mt-3">Back</a>
             <h1 class="mt-4">Edit Pet</h1>
-            <form id="petForm" class="row g-3" method="post" action="editPetCheck.php">
+            <form id="petForm" class="row g-3" method="post" action="editPetCheck.php" enctype="multipart/form-data">
+
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+
+                    <?php
+                    if ($petDetails['picturedir'] == "") {
+                        $currentPicDirectory = "placeholder.png";
+                    } else {
+                        $currentPicDirectory = $petDetails['picturedir'];
+                    }
+
+                    ?>
+                    <img src="<?php echo $currentPicDirectory ?>" class="profile-pic" alt="Picture doesn't exist">
+                    <div class="my-file">
+                        <input type="file" name="profilePic" value="<?php echo $currentPicDirectory ?>" class="my-file">
+                    </div>
+
+                </div>
+                <div class="col-md-4"></div>
                 <div class="col-md-6">
                     <label for="petName" class="form-label">Name (Current Name:
                         <?php echo ucwords($petName); ?>)
@@ -117,6 +139,7 @@
                 </div>
                 <input type="hidden" name="pid" value="<?php echo htmlspecialchars($userid); ?>">
                 <input type="hidden" name="petId" value="<?php echo htmlspecialchars($petId); ?>">
+                <input type="hidden" name="username" value="<?php echo htmlspecialchars($username); ?>">
                 <br>
                 <div>
                     <button type="submit" id="<?php echo $petId; ?>" class="btn btn-primary edit-pet">Edit Pet</button>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2023 at 05:26 AM
+-- Generation Time: Aug 04, 2023 at 10:01 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -55,15 +55,17 @@ CREATE TABLE `appointment` (
   `pid` int(10) DEFAULT NULL,
   `apponum` int(3) DEFAULT NULL,
   `scheduleid` int(10) DEFAULT NULL,
-  `appodate` date DEFAULT NULL
+  `appodate` date DEFAULT NULL,
+  `petId` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`appoid`, `pid`, `apponum`, `scheduleid`, `appodate`) VALUES
-(1, 1, 1, 1, '2022-06-03');
+INSERT INTO `appointment` (`appoid`, `pid`, `apponum`, `scheduleid`, `appodate`, `petId`) VALUES
+(4, 5, 1, 9, '2023-07-31', NULL),
+(20, 8, 1, 1, '2023-08-03', 24);
 
 -- --------------------------------------------------------
 
@@ -86,12 +88,13 @@ INSERT INTO `breed` (`breedId`, `speId`, `name`) VALUES
 (2, 1, 'jack russel terrier'),
 (3, 2, 'ginger'),
 (6, 1, 'shih tzu'),
-(9, 1, 'askal'),
+(9, 1, 'aspin'),
 (10, 2, 'orenj'),
 (11, 4, 'rhode island red'),
 (12, 4, 'jersey giant'),
 (13, 3, 'embden goose'),
-(14, 3, 'greylag goose');
+(14, 3, 'greylag goose'),
+(15, 2, 'puspin');
 
 -- --------------------------------------------------------
 
@@ -155,7 +158,8 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`docid`, `docemail`, `docname`, `docpassword`, `docnic`, `doctel`, `specialties`) VALUES
-(1, 'doctor@edoc.com', 'Test Doctor', '123', '000000000', '0110000000', 1);
+(1, 'doctor@edoc.com', 'Doctor Mak', '123', '000000000', '0110000000', 13),
+(2, 'kwak@mail.com', 'Doctor Kwak', 'kwak', '98765432', '0712345678', 19);
 
 -- --------------------------------------------------------
 
@@ -247,20 +251,23 @@ CREATE TABLE `pet` (
   `name` varchar(32) NOT NULL,
   `birthday` date NOT NULL,
   `speId` int(11) NOT NULL,
-  `breedId` int(11) NOT NULL
+  `breedId` int(11) NOT NULL,
+  `picturedir` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pet`
 --
 
-INSERT INTO `pet` (`petId`, `pid`, `name`, `birthday`, `speId`, `breedId`) VALUES
-(1, 5, 'keima', '2018-06-11', 1, 1),
-(2, 6, 'shiro', '2023-03-16', 1, 9),
-(3, 5, 'yukki', '2020-04-18', 1, 6),
-(5, 5, 'buntit', '2022-04-06', 2, 10),
-(9, 5, 'chonkejiataba', '2023-07-02', 2, 10),
-(14, 5, 'niggato kuro', '2023-07-03', 2, 3);
+INSERT INTO `pet` (`petId`, `pid`, `name`, `birthday`, `speId`, `breedId`, `picturedir`) VALUES
+(1, 5, 'Keima', '2020-07-14', 1, 1, '../uploads/owners/5/1/keima.jpg'),
+(2, 6, 'shiro', '2023-03-16', 1, 9, ''),
+(3, 5, 'Yuuki', '2020-04-19', 1, 6, '../uploads/owners/5/3/yukeee.jpg'),
+(5, 5, 'buntit', '2022-04-05', 2, 3, ''),
+(9, 5, 'jia', '2023-07-02', 2, 3, ''),
+(16, 5, 'kuro', '2023-07-03', 2, 15, ''),
+(22, 5, 'Rena', '2023-07-02', 2, 3, ''),
+(24, 8, 'Tweiler', '2020-02-06', 1, 9, '');
 
 -- --------------------------------------------------------
 
@@ -367,8 +374,6 @@ INSERT INTO `schedule` (`scheduleid`, `docid`, `title`, `scheduledate`, `schedul
 (1, '1', 'Test Session', '2050-01-01', '18:00:00', 50),
 (2, '1', '1', '2022-06-10', '20:36:00', 1),
 (3, '1', '12', '2022-06-10', '20:33:00', 1),
-(4, '1', '1', '2022-06-10', '12:32:00', 1),
-(5, '1', '1', '2022-06-10', '20:35:00', 1),
 (6, '1', '12', '2022-06-10', '20:35:00', 1),
 (7, '1', '1', '2022-06-24', '20:36:00', 1),
 (8, '1', '12', '2022-06-10', '13:33:00', 1);
@@ -545,7 +550,8 @@ INSERT INTO `webuser` (`email`, `usertype`) VALUES
 ('ciel@mail.com', 'p'),
 ('rose@mail.com', 'p'),
 ('jerick@mail.com', 'p'),
-('cj@mail.com', 'p');
+('cj@mail.com', 'p'),
+('kwak@mail.com', 'd');
 
 --
 -- Indexes for dumped tables
@@ -659,13 +665,13 @@ ALTER TABLE `webuser`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `appoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `breed`
 --
 ALTER TABLE `breed`
-  MODIFY `breedId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `breedId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -677,7 +683,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `docid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `docid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `item`
@@ -695,7 +701,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `petId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `petId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `purchase`
@@ -713,7 +719,7 @@ ALTER TABLE `sale`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `scheduleid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `scheduleid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `species`
