@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2023 at 10:01 AM
+-- Generation Time: Aug 07, 2023 at 10:57 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -56,16 +56,17 @@ CREATE TABLE `appointment` (
   `apponum` int(3) DEFAULT NULL,
   `scheduleid` int(10) DEFAULT NULL,
   `appodate` date DEFAULT NULL,
-  `petId` int(11) DEFAULT NULL
+  `petId` int(11) DEFAULT NULL,
+  `status` int(1) DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`appoid`, `pid`, `apponum`, `scheduleid`, `appodate`, `petId`) VALUES
-(4, 5, 1, 9, '2023-07-31', NULL),
-(20, 8, 1, 1, '2023-08-03', 24);
+INSERT INTO `appointment` (`appoid`, `pid`, `apponum`, `scheduleid`, `appodate`, `petId`, `status`) VALUES
+(20, 8, 1, 1, '2023-08-03', 24, 2),
+(24, 5, 2, 1, '2023-08-07', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -262,12 +263,13 @@ CREATE TABLE `pet` (
 INSERT INTO `pet` (`petId`, `pid`, `name`, `birthday`, `speId`, `breedId`, `picturedir`) VALUES
 (1, 5, 'Keima', '2020-07-14', 1, 1, '../uploads/owners/5/1/keima.jpg'),
 (2, 6, 'shiro', '2023-03-16', 1, 9, ''),
-(3, 5, 'Yuuki', '2020-04-19', 1, 6, '../uploads/owners/5/3/yukeee.jpg'),
+(3, 5, 'Yuuki', '2020-04-19', 1, 6, '../uploads/owners/5/3/yukki.jpg'),
 (5, 5, 'buntit', '2022-04-05', 2, 3, ''),
 (9, 5, 'jia', '2023-07-02', 2, 3, ''),
 (16, 5, 'kuro', '2023-07-03', 2, 15, ''),
-(22, 5, 'Rena', '2023-07-02', 2, 3, ''),
-(24, 8, 'Tweiler', '2020-02-06', 1, 9, '');
+(24, 8, 'Tweiler', '2020-02-06', 1, 9, ''),
+(26, 5, 'Rena', '2023-07-02', 2, 10, '../uploads/owners/5/26/orenj.jpg'),
+(30, 5, 'Akiro', '2022-05-02', 2, 10, '../uploads/owners/5/30/orenji.jpg');
 
 -- --------------------------------------------------------
 
@@ -665,7 +667,7 @@ ALTER TABLE `webuser`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `appoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `breed`
@@ -701,7 +703,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `petId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `petId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `purchase`

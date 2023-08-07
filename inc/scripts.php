@@ -260,7 +260,7 @@ addPet.on("click", function() {
     var bday = $("#birthdate").val();
     var specie = $("#specieSelect")[0].selectedOptions[0].id;
     var breed = $("#breedSelect")[0].selectedOptions[0].id;
-    var pemail = '<?php echo $_SESSION['user'] ?>';
+    var pemail = '<?php // echo $_SESSION['user'] ?>';
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -361,5 +361,25 @@ editPet.on("click", function(event) {
                 }
             }
         });
+    });
+</script>
+<script>
+    var status = $('.status-select').on('change', function (event) {
+        console.log(event.currentTarget.id);
+        console.log(event.currentTarget.value);
+        var appointmentId = event.currentTarget.id;
+
+        var statusValue = event.currentTarget.value;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(this.responseText);
+                location.reload();
+            }
+        };
+        xhttp.open("POST", "statusChange.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("appoid=" + appointmentId + "&statusValue=" + statusValue);
     });
 </script>

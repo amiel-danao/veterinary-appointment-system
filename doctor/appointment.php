@@ -13,13 +13,13 @@
 
     <title>Appointments</title>
     <style>
-        .popup {
-            animation: transitionIn-Y-bottom 0.5s;
-        }
+    .popup {
+        animation: transitionIn-Y-bottom 0.5s;
+    }
 
-        .sub-table {
-            animation: transitionIn-Y-bottom 0.5s;
-        }
+    .sub-table {
+        animation: transitionIn-Y-bottom 0.5s;
+    }
     </style>
 </head>
 
@@ -210,7 +210,16 @@
 
                                             <th class="table-headin">
 
+                                                Status
+
+                                            </th>
+
+
+                                            <th class="table-headin">
+
                                                 Events
+
+                                            </th>
 
                                         </tr>
                                     </thead>
@@ -268,10 +277,29 @@
                                         <td style="text-align:center;">
                                             ' . $appodate . '
                                         </td>
-
+                                        
+                                        <td style="text-align:center;">
+                                            <select id="' . $appoid . '" class="status-select" name="status" aria-label="Default select example">';
+                                                $option1 = "";
+                                                $option2 = "";
+                                                $option3 = "";
+                                                $stmt = $database->query("SELECT status FROM appointment WHERE appoid='$appoid'");
+                                                $stmt = $stmt->fetch_assoc();
+                                                $status = $stmt['status'];
+                                                if ($status == 1) {
+                                                    $option1 = "selected ";
+                                                } else if ($status == 2) {
+                                                    $option2 = "selected ";
+                                                } else if ($status == 3) {
+                                                    $option3 = "selected ";
+                                                }
+                                                echo '<option ' . $option1 . ' value="1">Pending</option>
+                                                <option ' . $option2 . 'value="2">Ongoing</option>
+                                                <option ' . $option3 . 'value="3">Complete</option>
+                                            </select>
+                                        </td>
                                         <td>
                                         <div style="display:flex;justify-content: center;">
-                                        
                                         <!--<a href="?action=view&id=' . $appoid . '" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-view"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">View</font></button></a>
                                        &nbsp;&nbsp;&nbsp;-->
                                        <a href="?action=drop&id=' . $appoid . '&name=' . $pname . '&session=' . $title . '&apponum=' . $apponum . '" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-delete"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">Cancel</font></button></a>
