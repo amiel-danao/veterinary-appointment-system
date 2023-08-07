@@ -12,17 +12,17 @@
 
     <title>Species</title>
     <style>
-    .dashbord-tables {
-        animation: transitionIn-Y-over 0.5s;
-    }
+        .dashbord-tables {
+            animation: transitionIn-Y-over 0.5s;
+        }
 
-    .filter-container {
-        animation: transitionIn-Y-bottom 0.5s;
-    }
+        .filter-container {
+            animation: transitionIn-Y-bottom 0.5s;
+        }
 
-    .sub-table {
-        animation: transitionIn-Y-bottom 0.5s;
-    }
+        .sub-table {
+            animation: transitionIn-Y-bottom 0.5s;
+        }
     </style>
 
 
@@ -36,18 +36,26 @@
     session_start();
 
     if (isset($_SESSION["user"])) {
-        if (($_SESSION["user"]) == "" or $_SESSION['usertype'] != 'a') {
+        if (($_SESSION["user"]) == "" or $_SESSION['usertype'] != 'd') {
             header("location: ../login.php");
+        } else {
+            $useremail = $_SESSION["user"];
         }
+
     } else {
         header("location: ../login.php");
     }
     //import database
+    //import database
     include("../connection.php");
+    $userrow = $database->query("select * from doctor where docemail='$useremail'");
+    $userfetch = $userrow->fetch_assoc();
+    $userid = $userfetch["docid"];
+    $username = $userfetch["docname"];
     ?>
     <div class="container">
         <div class="menu">
-            <?php include('../inc/sidebar.php') ?>
+            <?php include('../inc/doctorSidebar.php') ?>
         </div>
         <div class="dash-body" style="margin-top: 15px">
             <table border="0" width="100%" style=" border-spacing: 0;margin:0;padding:0;margin-top:25px; ">
@@ -100,7 +108,8 @@
                 <tr>
                     <td colspan="4" style="padding-top:10px;">
                         <p class="heading-main12" style="margin-left: 45px;font-size:18px;color:rgb(49, 49, 49)">All
-                            Species (<?php echo $list11->num_rows; ?>)
+                            Species (
+                            <?php echo $list11->num_rows; ?>)
                         </p>
                     </td>
                     <td colspan="4" style="padding-top:10px;">

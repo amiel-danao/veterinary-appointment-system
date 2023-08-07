@@ -25,18 +25,18 @@ $rootUrl .= '://' . $_SERVER['HTTP_HOST'];
 
     <title>Dashboard</title>
     <style>
-        .dashbord-tables {
-            animation: transitionIn-Y-over 0.5s;
-        }
+    .dashbord-tables {
+        animation: transitionIn-Y-over 0.5s;
+    }
 
-        .filter-container {
-            animation: transitionIn-Y-bottom 0.5s;
-        }
+    .filter-container {
+        animation: transitionIn-Y-bottom 0.5s;
+    }
 
-        .sub-table,
-        .anime {
-            animation: transitionIn-Y-bottom 0.5s;
-        }
+    .sub-table,
+    .anime {
+        animation: transitionIn-Y-bottom 0.5s;
+    }
     </style>
 
 

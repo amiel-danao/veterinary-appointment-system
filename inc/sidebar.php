@@ -28,31 +28,8 @@
     } ?>">
         <i class="bi bi-clipboard2-pulse-fill"></i> Doctors
     </a>
-    <a href="schedule.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'schedule.php') {
-        echo 'active';
-    } ?>">
-        <i class="bi bi-alarm-fill"></i> Schedule
-    </a>
-    <a href="appointment.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'appointment.php') {
-        echo 'active';
-    } ?>">
-        <i class="bi bi-bookmark-fill"></i> Appointment
-    </a>
-    <a href="patient.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'patient.php') {
-        echo 'active';
-    } ?>">
-        <i class="bi bi-person-vcard-fill"></i> Patients
-    </a>
-    <a href="species.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'species.php') {
-        echo 'active';
-    } ?>">
-        <i class="bi bi-egg-fill"></i> Species
-    </a>
-    <a href="breed.php" class="list-group-item list-group-item-action <?php if (basename($_SERVER['PHP_SELF']) == 'breed.php') {
-        echo 'active';
-    } ?>">
-        <i class="bi bi-bookmark-heart-fill"></i> Breed
-    </a>
+
+
 
 
     <div class="dropdown">
