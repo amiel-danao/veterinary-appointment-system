@@ -16,3 +16,10 @@
     border-radius: 5px;
     content: 'Update Picture';
 }
+.img-pet-list {
+    height: 60px;
+    width: 60px;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 50%;
+}

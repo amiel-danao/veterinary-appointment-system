@@ -34,7 +34,7 @@ if (isset($_POST)) {
         if ($petName === "" || $bday === "") {
             echo "Insufficient Details!";
         } else {
-            header("Location: editPetPage.php?id=$petId");
+            header("Location: petListPage.php");
         }
     } else {
         $result = $database->query("UPDATE pet SET name='$petName', birthday='$bday', speId='$specieId', breedId='$breedId' WHERE pid='$pid' AND petId='$petId'");

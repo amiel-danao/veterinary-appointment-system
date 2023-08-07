@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/profile-pic.css">
     <?php include('../inc/header.php') ?>
 
 
@@ -49,7 +50,16 @@
         <div class="dash-body" style="margin-top: 15px; padding-left:40px">
             <a href="#" onclick="goBack()" class="btn btn-primary mt-3">Back</a>
             <h1 class="mt-4">Add Pet</h1>
-            <form id="petForm" class="row g-3" method="post" action="addPetCheck.php">
+            <form id="petForm" class="row g-3" method="post" action="addPetCheck.php" enctype="multipart/form-data">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <img src="placeholder.png" class="profile-pic" alt="Picture of your pet">
+                    <div class="my-file">
+                        <input type="file" name="profilePic" class="my-file">
+                    </div>
+
+                </div>
+                <div class="col-md-4"></div>
                 <div class="col-md-6">
                     <label for="petName" class="form-label">Name</label>
                     <input type="text" name="petName" class="form-control" id="petName" placeholder="Enter pet name..."

@@ -86,7 +86,7 @@
                     }
 
                     ?>
-                    <img src="<?php echo $currentPicDirectory ?>" class="profile-pic" alt="Picture doesn't exist">
+                    <img src="<?php echo $currentPicDirectory ?>" class="profile-pic" alt="Picture of your pet">
                     <div class="my-file">
                         <input type="file" name="profilePic" value="<?php echo $currentPicDirectory ?>" class="my-file">
                     </div>

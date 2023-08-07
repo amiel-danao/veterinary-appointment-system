@@ -336,7 +336,7 @@ editPet.on("click", function(event) {
     deletePet.on("click", function () {
         var id = $(this).attr('id');
         bootbox.confirm({
-            message: 'Are you sure on deleting this breed?',
+            message: 'Are you sure on deleting this pet?',
             buttons: {
                 confirm: {
                     label: 'Yes',

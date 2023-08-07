@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/animations.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/profile-pic.css">
     <?php include('../inc/header.php') ?>
 
 
@@ -51,6 +52,7 @@
             <table id="petTable" class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Picture</th>
                         <th>Name</th>
                         <th>Species</th>
                         <th>Breed</th>
@@ -82,8 +84,14 @@
                         $specieOfBreed = $database->query("SELECT name FROM species WHERE speId='$specieId'");
                         $specieOfBreed = $specieOfBreed->fetch_assoc();
                         $specieName = $specieOfBreed['name'];
-                        // calculate age here from pet birthday (current date - birthday)
+                        $picturedir = "";
+                        if ($row['picturedir'] == "") {
+                            $picturedir = "placeholder.png";
+                        } else {
+                            $picturedir = $row['picturedir'];
+                        }
                         echo "<tr>";
+                        echo "<td><img src='$picturedir' placeholder='Picture of your pet' class='img-pet-list'></td>";
                         echo "<td id='$petId'>" . ucwords($row['name']) . "</td>";
                         echo "<td id='specieName'>" . ucwords($specieName) . "</td>";
                         echo "<td id='breedName'>" . ucwords($breedName) . "</td>";
@@ -96,7 +104,7 @@
                             </td>";
 
                         echo "</tr>";
-                        
+
                     }
                     // Close the MySQL connection
                     mysqli_close($database);
