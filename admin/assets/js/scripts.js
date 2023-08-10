@@ -1221,6 +1221,8 @@ function showSuggestions(textBoxID, scriptPath, suggestionsDivID){
 	
 	// Call the showPurchaseIDs.php script only if there is a value in the
 	// purchase ID textbox
+	console.log(scriptPath)
+	
 	if(textBoxValue != ''){
 		$.ajax({
 			url: scriptPath,
@@ -1229,6 +1231,9 @@ function showSuggestions(textBoxID, scriptPath, suggestionsDivID){
 			success: function(data){
 				$('#' + suggestionsDivID).fadeIn();
 				$('#' + suggestionsDivID).html(data);
+			},
+			error:function(e){
+				console.error(e);
 			}
 		});
 	}

@@ -3,4 +3,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <!-- Chosen files for select boxes -->
-<link rel="stylesheet" href="../admin/vendor/chosen/chosen.css" />
+<!-- <link rel="stylesheet" href="../admin/vendor/chosen/chosen.css" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css"
+    integrity="sha512-yVvxUQV0QESBt1SyZbNJMAwyKvFTLMyXSyBHDO4BG5t7k/Lw34tyqlSDlKIrIENIzCl+RVUNjmCPG+V/GMesRw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
