@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2023 at 10:57 AM
+-- Generation Time: Aug 10, 2023 at 09:22 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -95,7 +95,8 @@ INSERT INTO `breed` (`breedId`, `speId`, `name`) VALUES
 (12, 4, 'jersey giant'),
 (13, 3, 'embden goose'),
 (14, 3, 'greylag goose'),
-(15, 2, 'puspin');
+(15, 2, 'puspin'),
+(16, 2, 'black');
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,7 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`productID`, `itemNumber`, `itemName`, `discount`, `stock`, `unitPrice`, `imageURL`, `status`, `description`) VALUES
-(34, '1', 'First Bag', 0, 25, 1500, '1525670999_1.png', 'Active', ''),
+(34, '1', 'First Bag', 0, 25, 1500, '1525670999_1.png', 'Active', 'The first bag, yey'),
 (35, '2', 'School Bag', 1.3, 30, 600, '1525681111_661539.png', 'Active', 'Classic school bag to be used by students.'),
 (36, '3', 'Office Bag', 0, 5, 1300, '1525709924_office bag.jpg', 'Active', ''),
 (37, '4', 'Leather Bag', 2, 6, 3409, '1525710010_leather bag.jpg', 'Active', ''),
@@ -196,7 +197,8 @@ INSERT INTO `item` (`productID`, `itemNumber`, `itemName`, `discount`, `stock`, 
 (43, '10', 'Sports Bag', 1, 92, 1000, '1525756289_sports bag.jpg', 'Active', ''),
 (45, '11', 'First Aid Bag', 1.5, 11, 1200, '1525787551_first aid bag.jpg', 'Active', ''),
 (49, '14', 'Hiking Bag', 1.5, 6, 1200, '1526297640_hiking bag.jpg', 'Active', 'This is a hiking bag. Ideal for long distance hikes. Light-weight and water proof.'),
-(53, '9', 'Paper Bag', 1.5, 65, 200, '1689134192_OIP.jpg', 'Disabled', 'A durable paper bag');
+(53, '9', 'Paper Bag', 1.5, 70, 200, '1689134192_OIP.jpg', 'Active', 'A durable paper bag'),
+(54, '13', 'Pedigree Dog Food', 3, 30, 200, '1691648444_pedig.jpg', 'Active', 'High class dog food');
 
 -- --------------------------------------------------------
 
@@ -266,7 +268,7 @@ INSERT INTO `pet` (`petId`, `pid`, `name`, `birthday`, `speId`, `breedId`, `pict
 (3, 5, 'Yuuki', '2020-04-19', 1, 6, '../uploads/owners/5/3/yukki.jpg'),
 (5, 5, 'buntit', '2022-04-05', 2, 3, ''),
 (9, 5, 'jia', '2023-07-02', 2, 3, ''),
-(16, 5, 'kuro', '2023-07-03', 2, 15, ''),
+(16, 5, 'Kuro', '2023-07-03', 2, 16, ''),
 (24, 8, 'Tweiler', '2020-02-06', 1, 9, ''),
 (26, 5, 'Rena', '2023-07-02', 2, 10, '../uploads/owners/5/26/orenj.jpg'),
 (30, 5, 'Akiro', '2022-05-02', 2, 10, '../uploads/owners/5/30/orenji.jpg');
@@ -302,12 +304,12 @@ INSERT INTO `purchase` (`purchaseID`, `itemNumber`, `purchaseDate`, `itemName`, 
 (45, '5', '2018-05-21', 'Travel Bag', 3000, 10, 'Sample Vendor 222', 2),
 (46, '4', '2018-05-19', 'Leather Bag', 1200, 4, 'Johnson and Johnsons Co.', 3),
 (47, '2', '2018-05-10', 'School Bag', 2, 1, 'Sample Vendor 222', 2),
-(48, '1', '2018-05-12', 'Handbag', 2, 9, 'ABC Company', 1),
+(48, '1', '2018-05-12', 'First Bag', 2, 9, 'ABC Company', 1),
 (50, '14', '2018-05-15', 'Hiking Bag', 1000, 5, 'Louise Vitton Bag', 4),
 (51, '11', '2018-05-11', 'First Aid Bag', 1121, 1, 'ABC Company', 1),
 (52, '1', '2018-05-21', 'First Bag', 1235, 2, 'Sample Vendor 222', 2),
 (54, '9', '2018-08-24', 'Paper Bag', 200, 10, 'New Bags Exporters', 8),
-(55, '9', '2018-05-24', 'Paper Bag', 200, 10, 'Sky Corp', 6),
+(55, '9', '2018-05-24', 'Paper Bag', 200, 15, 'Sky Corp', 6),
 (56, '9', '2018-05-24', 'Paper Bag', 200, 5, 'Sample Vendor 222', 2);
 
 -- --------------------------------------------------------
@@ -673,7 +675,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `breed`
 --
 ALTER TABLE `breed`
-  MODIFY `breedId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `breedId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -691,7 +693,7 @@ ALTER TABLE `doctor`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `patient`
