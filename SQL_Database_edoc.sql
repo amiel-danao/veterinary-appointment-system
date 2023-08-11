@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2023 at 09:22 AM
+-- Generation Time: Aug 11, 2023 at 09:13 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -236,7 +236,7 @@ CREATE TABLE `patient` (
 INSERT INTO `patient` (`pid`, `pemail`, `pname`, `ppassword`, `paddress`, `pnic`, `pdob`, `ptel`, `customerID`, `fullName`, `email`, `mobile`, `phone2`, `address`, `address2`, `city`, `district`, `status`, `createdOn`, `password`) VALUES
 (1, 'patient@edoc.com', 'Test Patient', '123', 'Sri Lanka', '0000000000', '2000-01-01', '0120000000', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-14 06:27:52', ''),
 (2, 'emhashenudara@gmail.com', 'Hashen Udara', '123', 'Sri Lanka', '0110000000', '2022-06-03', '0700000000', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-14 06:27:52', ''),
-(5, 'ciel@mail.com', 'Ciel Inconnus', '$2y$10$CCJP.P8ZdF2LjvpeeVPpgeCKP4393rQ8FzPrKxHe4dIIrTdfCFkou', 'Malagasang', '1233445', '2002-03-24', '0712345678', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-17 05:20:35', ''),
+(5, 'ciel@mail.com', 'Ciel Inconnus', '$2y$10$CCJP.P8ZdF2LjvpeeVPpgeCKP4393rQ8FzPrKxHe4dIIrTdfCFkou', 'Malagasang', '1233445', '2002-03-24', '9950289659', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-17 05:20:35', ''),
 (6, 'vonn@mail.com', 'Vonn Mamaril', '$2y$10$juIGXGUsjf9DzCZg4ma2R.rAR96ZldgbIZ9//OubMEcPteck1lOKq', 'Imus', NULL, '2002-02-02', '9951234567', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-17 05:32:20', ''),
 (7, 'rose@mail.com', 'Rose Mamaril', '$2y$10$Rhq4qD7ePDOLz3VQ5poTWumoR6PXkRj2sq.urjt1u8Dh3SNN6iqQ.', 'Isabela', NULL, '2002-09-14', '9953217654', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-17 05:38:00', ''),
 (8, 'jerick@mail.com', 'Jerick Arzaga', '$2y$10$9R6Kz5JhY4ULvrY.0BxJ..5v6ykA3UMffqFw6pMWC.duupRqZglnC', 'GMA', NULL, '2002-06-05', '9959873456', 0, '', NULL, '', NULL, '', NULL, NULL, '', 'Active', '2023-07-17 05:55:38', ''),
