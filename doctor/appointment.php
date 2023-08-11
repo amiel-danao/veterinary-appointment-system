@@ -283,6 +283,7 @@
                                                 $option1 = "";
                                                 $option2 = "";
                                                 $option3 = "";
+                                                $option4 = "";
                                                 $stmt = $database->query("SELECT status FROM appointment WHERE appoid='$appoid'");
                                                 $stmt = $stmt->fetch_assoc();
                                                 $status = $stmt['status'];
@@ -292,10 +293,13 @@
                                                     $option2 = "selected ";
                                                 } else if ($status == 3) {
                                                     $option3 = "selected ";
+                                                } else if ($status == 4) {
+                                                    $option4 = "selected ";
                                                 }
                                                 echo '<option ' . $option1 . ' value="1">Pending</option>
                                                 <option ' . $option2 . 'value="2">Ongoing</option>
                                                 <option ' . $option3 . 'value="3">Complete</option>
+                                                <option ' . $option4 . 'value="4">Rejected</option>
                                             </select>
                                         </td>
                                         <td>
