@@ -9,10 +9,10 @@ $dotenv->load();
 // To set up environmental variables, see http://twil.io/secure
 $account_sid = $_ENV['TWILIO_ACCOUNT_SID'];
 $auth_token = $_ENV['TWILIO_AUTH_TOKEN'];
+$twilio_number = $_ENV['TWILIO_NUMBER'];
 // In production, these should be environment variables. E.g.:
 // $auth_token = $_ENV["TWILIO_ACCOUNT_SID"]
 // A Twilio number you own with SMS capabilities
-$twilio_number = '+13135135433';
 $message = $statusMessage;
 $sendTo = $ptel;
 $client = new Client($account_sid, $auth_token);
