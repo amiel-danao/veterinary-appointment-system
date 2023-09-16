@@ -16,6 +16,10 @@
     integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <!-- <script src="../admin/vendor/chosen/chosen.jquery.min.js">
 </script> -->
 <script>

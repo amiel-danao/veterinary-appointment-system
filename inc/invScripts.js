@@ -366,11 +366,11 @@ $(document).ready(function(){
 	});
 	
 	// Initiate datepickers
-	$('.datepicker').datepicker({
-		format: 'yyyy-mm-dd',
-		todayHighlight: true,
-		todayBtn: 'linked',
-		orientation: 'bottom left'
+	$('.datepicker').flatpickr({
+		dateFormat: 'Y-m-d',
+		// todayHighlight: true,
+		// todayBtn: 'linked',
+		// orientation: 'bottom left'
 	});
 	
 	// Calculate Total in purchase tab
